@@ -38,6 +38,9 @@ useEffect(() =>{
     )
 const {form_state: login_form_state, handleSubmit,handleInputChange} = useForm({initial_form_state, onSubmit: onLogin }
     )
+ const goToRegister = () => {
+        navigate('/register')
+    }
 
     return (
         <div>
@@ -76,6 +79,10 @@ const {form_state: login_form_state, handleSubmit,handleInputChange} = useForm({
                 {
                     error && <span style={{ color: 'red' }}>{error.message}</span>
                 }
+                 <p>
+                ¿No tienes una cuenta?
+                <button onClick={goToRegister}>Registrate aquí</button>
+            </p>
             </form>
         </div>
     )
