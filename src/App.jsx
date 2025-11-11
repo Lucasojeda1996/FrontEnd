@@ -3,6 +3,9 @@ import { Route, Routes, Navigate  } from 'react-router'
 import RegisterScreen from './Screens/RegisterScreen/RegisterScreen'
 import { LoginScreen } from './Screens/LoginScreen/LoginScreen'
 import AuthMiddleware from './Middlewares/AuthMiddleware'
+import ResetPasswordScreen from './Screens/ResetPasswordScreen/ResetPasswordScreen.jsx'
+import RecoveryScreen from './Screens/RecoveryScreen/RecoveryScreen'
+
 
 function App() {
 
@@ -13,6 +16,8 @@ function App() {
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path='/register' element={<RegisterScreen/>} />
       <Route path='/login' element={<LoginScreen/>} />
+      <Route path="/reset-password/:recovery_token" element={<ResetPasswordScreen />} />
+      <Route path="/recovery" element={<RecoveryScreen />} />
       <Route element={AuthMiddleware}/>
        <Route path='/home' element={<h1>home</h1>}/>
      

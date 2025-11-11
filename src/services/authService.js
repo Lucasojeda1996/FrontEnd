@@ -41,3 +41,27 @@ export async function login(email, password) {
     }
     return response_data
 }
+
+export async function sendRecoveryEmail(email) {
+  const response = await fetch(
+    `${ENVIRONMENT.URL_API}/api/auth/recovery`, 
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    }
+  )
+  return response.json()
+}
+
+export async function resetPassword(recovery_token, new_password) {
+  const response = await fetch(
+    `${ENVIRONMENT.URL_API}/api/auth/reset-password/${recovery_token}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ new_password })
+    }
+  )
+  return response.json()
+}

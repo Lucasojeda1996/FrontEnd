@@ -38,9 +38,8 @@ useEffect(() =>{
     )
 const {form_state: login_form_state, handleSubmit,handleInputChange} = useForm({initial_form_state, onSubmit: onLogin }
     )
- const goToRegister = () => {
-        navigate('/register')
-    }
+const goToRegister = () => { navigate('/register') }
+const goToRecovery = () => navigate('/recovery')
 
     return (
         <div>
@@ -83,6 +82,10 @@ const {form_state: login_form_state, handleSubmit,handleInputChange} = useForm({
                 ¿No tienes una cuenta?
                 <button onClick={goToRegister}>Registrate aquí</button>
             </p>
+                 <p>
+                 ¿Olvidaste tu contraseña?
+                 <button type='button' onClick={goToRecovery}>Recupérala aquí</button>
+        </p>
             </form>
         </div>
     )
