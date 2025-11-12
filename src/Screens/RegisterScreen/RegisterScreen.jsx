@@ -1,41 +1,44 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import useForm from '../../hooks/useForm'
 import { register } from '../../services/authService'
 import useFetch from '../../hooks/useFetch'
-import {  useNavigate } from 'react-router'
-// 🟢 Primero definís FORM_FIELDS
+import { useNavigate } from 'react-router'
+
 const FORM_FIELDS = {
   NAME: 'name',
   EMAIL: 'email',
   PASSWORD: 'password'
-};
+}
 
-// 🟢 Luego definís initial_form_state
 const initial_form_state = {
   [FORM_FIELDS.NAME]: '',
   [FORM_FIELDS.EMAIL]: '',
   [FORM_FIELDS.PASSWORD]: ''
-};
-
+}
 
 const RegisterScreen = () => {
+  const navigate = useNavigate() // ✅ Necesario para usar navigate('/login')
 
-const{sendRequest,loading,response,error}=useFetch()
+  const { sendRequest, loading, response, error } = useFetch()
 
-const onRegister = (form_state) => {
-sendRequest(()=> register(
-  form_state[FORM_FIELDS.NAME],
-  form_state[FORM_FIELDS.EMAIL],
-  form_state[FORM_FIELDS.PASSWORD]
-))
-} 
-const {form_state: register_form_state ,handleInputChange,handleSubmit } = useForm({initial_form_state,onSubmit:onRegister})
+  const onRegister = (form_state) => {
+    sendRequest(() =>
+      register(
+        form_state[FORM_FIELDS.NAME],
+        form_state[FORM_FIELDS.EMAIL],
+        form_state[FORM_FIELDS.PASSWORD]
+      )
+    )
+  }
 
-return (
+  const { form_state: register_form_state, handleInputChange, handleSubmit } =
+    useForm({ initial_form_state, onSubmit: onRegister })
+
+  return (
     <div>
       <h1>register</h1>
       <form onSubmit={handleSubmit}>
-      <div>
+        <div>
           <label htmlFor="name">Nombre:</label>
           <input
             name="name"
@@ -67,20 +70,24 @@ return (
             onChange={handleInputChange}
           />
         </div>
-     {
-       !response
-       ? <button type='submit' disabled={loading}>Registrarse</button>
-        : <>
-      <button type='submit' disabled={true}>Registrado</button>
-      <span style={{color: 'green'}}>{response.message}</span>
-       <button type="button" onClick={() => navigate('/login')}>
+
+        {!response ? (
+          <button type="submit" disabled={loading}>
+            Registrarse
+          </button>
+        ) : (
+          <>
+            <button type="submit" disabled>
+              Registrado
+            </button>
+            <span style={{ color: 'green' }}>{response.message}</span>
+            <button type="button" onClick={() => navigate('/login')}>
               Ir al login
             </button>
-     </>
-                }
-                {
-                    error && <span style={{color: 'red'}}>{error.message}</span>
-                }
+          </>
+        )}
+
+        {error && <span style={{ color: 'red' }}>{error.message}</span>}
       </form>
     </div>
   )
