@@ -26,7 +26,7 @@ return response_data
 
 export async function login(email, password) {
     const response = await fetch(
-    `${ENVIRONMENT.URL_API}/api/auth/login `   ,
+    `${ENVIRONMENT.URL_API}/api/auth/login`   ,
         {
             method: HTTP_METHODS.POST,
             headers: {
@@ -56,12 +56,19 @@ export async function sendRecoveryEmail(email) {
 
 export async function resetPassword(recovery_token, new_password) {
   const response = await fetch(
-    `${ENVIRONMENT.URL_FRONTEND}/api/auth/reset-password/${recovery_token}`,
+    `${ENVIRONMENT.URL_API}/api/auth/reset-password/${recovery_token}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ new_password })
     }
-  )
-  return response.json()
+  );
+
+  const text = await response.text();
+
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error("El servidor no devolvió una respuesta válida");
+  }
 }

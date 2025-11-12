@@ -16,8 +16,8 @@ function App() {
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path='/register' element={<RegisterScreen/>} />
       <Route path='/login' element={<LoginScreen/>} />
-      <Route path="/reset-password/:recovery_token" element={<ResetPasswordScreen />} />
       <Route path="/recovery" element={<RecoveryScreen />} />
+      <Route path="/reset-password/:recovery_token" element={<ResetPasswordScreen />} />
       <Route element={AuthMiddleware}/>
        <Route path='/home' element={<h1>home</h1>}/>
      
