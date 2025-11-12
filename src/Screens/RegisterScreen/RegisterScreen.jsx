@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import useForm from '../../hooks/useForm'
 import { register } from '../../services/authService'
 import useFetch from '../../hooks/useFetch'
-
+import {  useNavigate } from 'react-router'
 // 🟢 Primero definís FORM_FIELDS
 const FORM_FIELDS = {
   NAME: 'name',
@@ -73,6 +73,9 @@ return (
         : <>
       <button type='submit' disabled={true}>Registrado</button>
       <span style={{color: 'green'}}>{response.message}</span>
+       <button type="button" onClick={() => navigate('/login')}>
+              Ir al login
+            </button>
      </>
                 }
                 {
