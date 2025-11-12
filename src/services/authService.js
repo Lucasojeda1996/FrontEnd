@@ -56,7 +56,7 @@ export async function sendRecoveryEmail(email) {
 
 export async function resetPassword(recovery_token, new_password) {
   const response = await fetch(
-    `${ENVIRONMENT.URL_API}/api/auth/reset-password/${recovery_token}`,
+    `${ENVIRONMENT.URL_FRONTEND}/api/auth/reset-password/${recovery_token}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
