@@ -1,110 +1,147 @@
+/* ------------------------------------
+   Estilos Comunes (similares a Login)
+   ------------------------------------ */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+}
+
+/* Contenedor de la página de registro */
 .register-page-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-  font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f3f4f6; /* Fondo gris claro */
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
+/* Tarjeta principal para el formulario */
 .register-card {
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  padding: 40px 50px;
-  width: 100%;
-  max-width: 450px;
-  text-align: center;
-  animation: fadeIn 0.6s ease;
+    background-color: #ffffff;
+    border-radius: 0.75rem; /* Bordes redondeados */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    width: 100%;
+    max-width: 450px; /* Un poco más ancho para el campo de nombre */
+    box-sizing: border-box;
 }
 
-.register-card h1 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
-  font-weight: 600;
+/* Título de la pantalla de registro */
+.register-title {
+    font-size: 1.875rem; /* 30px */
+    font-weight: 700;
+    text-align: center;
+    color: #1f2937;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
 }
 
+/* Estilos del formulario */
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem; /* Espacio entre grupos de input */
+}
+
+/* Grupo de Input (contenedor de label e input) */
 .input-group {
-  margin-bottom: 20px;
-  text-align: left;
+    display: flex;
+    flex-direction: column;
 }
 
-.input-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: #444;
+/* Etiquetas (Labels) */
+.form-label {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
 }
 
-.input-group input {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 15px;
-  transition: 0.3s;
+/* Inputs de texto */
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.input-group input:focus {
-  border-color: #2575fc;
-  outline: none;
-  box-shadow: 0 0 5px rgba(37, 117, 252, 0.3);
+.form-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
 }
 
-button {
-  width: 100%;
-  padding: 12px;
-  background: #2575fc;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
+/* ------------------------------------
+   Estilos de Botones y Mensajes
+   ------------------------------------ */
+
+/* Botón Primario (Registrarse) */
+.primary-button {
+    width: 100%;
+    padding: 0.75rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #10b981; /* Verde esmeralda para acción principal */
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-top: 0.5rem;
 }
 
-button:hover {
-  background: #1a5ed9;
+.primary-button:hover:not(:disabled) {
+    background-color: #059669;
 }
 
-button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
+/* Botón deshabilitado */
+.primary-button:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
 }
 
+/* Botón de éxito (después del registro) */
+.primary-button.success {
+    background-color: #16a34a; /* Verde más oscuro para éxito */
+    cursor: not-allowed;
+}
+
+/* Botón Secundario (Ir al login) */
 .secondary-button {
-  margin-top: 15px;
-  background: transparent;
-  color: #2575fc;
-  border: 2px solid #2575fc;
-  transition: 0.3s;
+    width: 100%;
+    padding: 0.75rem;
+    font-weight: 500;
+    color: #3b82f6; /* Azul */
+    background-color: transparent;
+    border: 1px solid #3b82f6;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    margin-top: 0.5rem;
 }
 
 .secondary-button:hover {
-  background: #2575fc;
-  color: #fff;
+    background-color: #eff6ff; /* Fondo azul muy claro */
 }
 
+/* Mensaje de éxito */
 .success-message {
-  margin-top: 15px;
-  color: #28a745;
-  font-weight: 500;
+    text-align: center;
+    color: #10b981;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
 }
 
+/* Mensaje de error */
 .error-message {
-  margin-top: 15px;
-  color: #dc3545;
-  font-weight: 500;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    text-align: center;
+    color: #ef4444; /* Rojo */
+    font-weight: 500;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
 }
