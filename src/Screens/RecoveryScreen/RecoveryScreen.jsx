@@ -2,6 +2,7 @@ import React from 'react'
 import useForm from '../../hooks/useForm.jsx'
 import useFetch from '../../hooks/useFetch.jsx'
 import { sendRecoveryEmail } from '../../services/authService.js'
+import './RecoveryScreen.css'
 
 const FORM_FIELDS = {
   EMAIL: 'email'
@@ -21,26 +22,30 @@ const RecoveryScreen = () => {
   const { handleSubmit, handleInputChange } = useForm({ initial_form_state, onSubmit })
 
   return (
-    <div>
-      <h1>Recuperar contraseña</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor={FORM_FIELDS.EMAIL}>Email:</label>
-          <input
-            id={FORM_FIELDS.EMAIL}
-            name={FORM_FIELDS.EMAIL}
-            type='email'
-            onChange={handleInputChange}
-          />
-        </div>
+    <div className='recovery-page-container'>
+      <div className='recovery-card'>
+        <h1>Recuperar contraseña</h1>
+        <form onSubmit={handleSubmit}>
+          <div className='input-group'>
+            <label htmlFor={FORM_FIELDS.EMAIL}>Correo electrónico</label>
+            <input
+              id={FORM_FIELDS.EMAIL}
+              name={FORM_FIELDS.EMAIL}
+              type='email'
+              placeholder='Ej: usuario@gmail.com'
+              onChange={handleInputChange}
+              required
+            />
+          </div>
 
-        <button type='submit' disabled={loading}>
-          {loading ? 'Enviando correo...' : 'Enviar enlace de recuperación'}
-        </button>
+          <button type='submit' disabled={loading}>
+            {loading ? 'Enviando correo...' : 'Enviar enlace de recuperación'}
+          </button>
 
-        {response && <p style={{ color: 'green' }}>{response.message}</p>}
-        {error && <p style={{ color: 'red' }}>{error.message}</p>}
-      </form>
+          {response && <p className='success-message'>{response.message}</p>}
+          {error && <p className='error-message'>{error.message}</p>}
+        </form>
+      </div>
     </div>
   )
 }

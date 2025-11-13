@@ -3,6 +3,7 @@ import useForm from '../../hooks/useForm'
 import { register } from '../../services/authService'
 import useFetch from '../../hooks/useFetch'
 import { useNavigate } from 'react-router'
+import './RegisterScreen.css'
 
 const FORM_FIELDS = {
   NAME: 'name',
@@ -17,8 +18,7 @@ const initial_form_state = {
 }
 
 const RegisterScreen = () => {
-  const navigate = useNavigate() // ✅ Necesario para usar navigate('/login')
-
+  const navigate = useNavigate()
   const { sendRequest, loading, response, error } = useFetch()
 
   const onRegister = (form_state) => {
@@ -35,60 +35,73 @@ const RegisterScreen = () => {
     useForm({ initial_form_state, onSubmit: onRegister })
 
   return (
-    <div>
-      <h1>register</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Nombre:</label>
-          <input
-            name="name"
-            id="name"
-            type="text"
-            value={register_form_state.name}
-            onChange={handleInputChange}
-          />
-        </div>
+    <div className='register-page-container'>
+      <div className='register-card'>
+        <h1>Crear cuenta</h1>
 
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            name="email"
-            id="email"
-            type="email"
-            value={register_form_state.email}
-            onChange={handleInputChange}
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className='input-group'>
+            <label htmlFor='name'>Nombre</label>
+            <input
+              name='name'
+              id='name'
+              type='text'
+              value={register_form_state.name}
+              onChange={handleInputChange}
+              placeholder='Tu nombre completo'
+              required
+            />
+          </div>
 
-        <div>
-          <label htmlFor="password">Contraseña:</label>
-          <input
-            name="password"
-            id="password"
-            type="password"
-            value={register_form_state.password}
-            onChange={handleInputChange}
-          />
-        </div>
+          <div className='input-group'>
+            <label htmlFor='email'>Correo electrónico</label>
+            <input
+              name='email'
+              id='email'
+              type='email'
+              value={register_form_state.email}
+              onChange={handleInputChange}
+              placeholder='usuario@gmail.com'
+              required
+            />
+          </div>
 
-        {!response ? (
-          <button type="submit" disabled={loading}>
-            Registrarse
-          </button>
-        ) : (
-          <>
-            <button type="submit" disabled>
-              Registrado
+          <div className='input-group'>
+            <label htmlFor='password'>Contraseña</label>
+            <input
+              name='password'
+              id='password'
+              type='password'
+              value={register_form_state.password}
+              onChange={handleInputChange}
+              placeholder='********'
+              required
+            />
+          </div>
+
+          {!response ? (
+            <button type='submit' disabled={loading}>
+              {loading ? 'Registrando...' : 'Registrarse'}
             </button>
-            <span style={{ color: 'green' }}>{response.message}</span>
-            <button type="button" onClick={() => navigate('/login')}>
-              Ir al login
-            </button>
-          </>
-        )}
+          ) : (
+            <>
+              <button type='submit' disabled>
+                Registrado ✔
+              </button>
+              <p className='success-message'>{response.message}</p>
+              <button
+                type='button'
+                className='secondary-button'
+                onClick={() => navigate('/login')}
+              >
+                Ir al login
+              </button>
+            </>
+          )}
 
-        {error && <span style={{ color: 'red' }}>{error.message}</span>}
-      </form>
+          {error && <p className='error-message'>{error.message}</p>}
+        </form>
+      </div>
     </div>
   )
 }
