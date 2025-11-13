@@ -15,7 +15,7 @@ const initial_form_state = {
   [FORM_FIELDS.PASSWORD]: ''
 }
 
-const LoginScreen = () => {
+export const LoginScreen = () => {
   const navigate = useNavigate()
   const { sendRequest, loading, response, error } = useFetch()
 
