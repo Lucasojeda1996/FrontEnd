@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes, Navigate  } from 'react-router'
 import RegisterScreen from './Screens/RegisterScreen/RegisterScreen'
-import { LoginScreen } from './Screens/LoginScreen/LoginScreen'
+import LoginScreen  from './Screens/LoginScreen/LoginScreen'
 import AuthMiddleware from './Middlewares/AuthMiddleware'
 import ResetPasswordScreen from './Screens/ResetPasswordScreen/ResetPasswordScreen.jsx'
 import RecoveryScreen from './Screens/RecoveryScreen/RecoveryScreen'
