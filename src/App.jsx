@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route, Routes, Navigate  } from 'react-router'
-import RegisterScreen from './Screens/LoginScreen/LoginScreen.jsx'
-import LoginScreen  from './Screens/RegisterScreen/RegisterScreen.jsx'
+
+
 import AuthMiddleware from './Middlewares/AuthMiddleware'
 import ResetPasswordScreen from './Screens/ResetPasswordScreen/ResetPasswordScreen.jsx'
 import RecoveryScreen from './Screens/RecoveryScreen/RecoveryScreen'
-
-
+import RegisterScreen from './Screens/RegisterScreen/RegisterScreen.jsx'
+import LoginScreen from './Screens/LoginScreen/LoginScreen.jsx'
 function App() {
 
   return (
