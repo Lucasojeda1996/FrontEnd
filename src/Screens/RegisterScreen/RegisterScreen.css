@@ -1,147 +1,132 @@
-/* ------------------------------------
-   Estilos Comunes (similares a Login)
-   ------------------------------------ */
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    margin: 0;
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  padding: 20px;
 }
 
-/* Contenedor de la página de registro */
-.register-page-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #f3f4f6; /* Fondo gris claro */
-    padding: 1rem;
-    box-sizing: border-box;
-}
-
-/* Tarjeta principal para el formulario */
 .register-card {
-    background-color: #ffffff;
-    border-radius: 0.75rem; /* Bordes redondeados */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    padding: 2rem;
-    width: 100%;
-    max-width: 450px; /* Un poco más ancho para el campo de nombre */
-    box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
 }
 
-/* Título de la pantalla de registro */
 .register-title {
-    font-size: 1.875rem; /* 30px */
-    font-weight: 700;
-    text-align: center;
-    color: #1f2937;
-    margin-top: 0;
-    margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
 }
 
-/* Estilos del formulario */
 .register-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem; /* Espacio entre grupos de input */
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
-/* Grupo de Input (contenedor de label e input) */
 .input-group {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-/* Etiquetas (Labels) */
 .form-label {
-    margin-bottom: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #4b5563;
+  font-size: 0.9rem;
+  color: #475569;
+  margin-bottom: 6px;
 }
 
-/* Inputs de texto */
 .form-input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.5rem;
-    box-sizing: border-box;
-    transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-input:focus {
-    outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
 
-/* ------------------------------------
-   Estilos de Botones y Mensajes
-   ------------------------------------ */
-
-/* Botón Primario (Registrarse) */
 .primary-button {
-    width: 100%;
-    padding: 0.75rem;
-    font-weight: 600;
-    color: #ffffff;
-    background-color: #10b981; /* Verde esmeralda para acción principal */
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-    margin-top: 0.5rem;
+  width: 100%;
+  background-color: #2563eb;
+  color: #fff;
+  padding: 12px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .primary-button:hover:not(:disabled) {
-    background-color: #059669;
+  background-color: #1d4ed8;
 }
 
-/* Botón deshabilitado */
 .primary-button:disabled {
-    background-color: #9ca3af;
-    cursor: not-allowed;
+  background-color: #94a3b8;
+  cursor: not-allowed;
 }
 
-/* Botón de éxito (después del registro) */
 .primary-button.success {
-    background-color: #16a34a; /* Verde más oscuro para éxito */
-    cursor: not-allowed;
+  background-color: #16a34a;
 }
 
-/* Botón Secundario (Ir al login) */
-.secondary-button {
-    width: 100%;
-    padding: 0.75rem;
-    font-weight: 500;
-    color: #3b82f6; /* Azul */
-    background-color: transparent;
-    border: 1px solid #3b82f6;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-    margin-top: 0.5rem;
-}
-
-.secondary-button:hover {
-    background-color: #eff6ff; /* Fondo azul muy claro */
-}
-
-/* Mensaje de éxito */
 .success-message {
-    text-align: center;
-    color: #10b981;
-    font-weight: 500;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
+  margin-top: 10px;
+  color: #16a34a;
+  font-weight: 500;
 }
 
-/* Mensaje de error */
 .error-message {
-    text-align: center;
-    color: #ef4444; /* Rojo */
-    font-weight: 500;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
+  margin-top: 10px;
+  color: #dc2626;
+  font-weight: 500;
+}
+
+/* --- NUEVOS ESTILOS PARA EL ENLACE --- */
+.link-container {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 0;
+}
+
+.link-button:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* --- Animación de entrada --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
