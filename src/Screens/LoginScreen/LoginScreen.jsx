@@ -4,7 +4,7 @@ import useForm from '../../hooks/useForm.jsx'
 import { login } from '../../services/authService.js'
 import { useNavigate } from 'react-router'
 import LOCALSTORAGE_KEYS from '../../constants/localstorage.js'
-
+import './LoginScreen.css' 
 const FORM_FIELDS = {
     EMAIL: 'email',
     PASSWORD: 'password'
@@ -38,51 +38,41 @@ const initial_form_state = {
     const goToRegister = () => { navigate('/register') }
     const goToRecovery = () => navigate('/recovery')
     return (
-        <div>
-            <h1>Iniciar Sesión</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor={FORM_FIELDS.EMAIL}>Email:</label>
-                    <input
-                        name={FORM_FIELDS.EMAIL}
-                        id={FORM_FIELDS.EMAIL}
-                        type='email'
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor={FORM_FIELDS.PASSWORD}>Contraseña:</label>
-                    <input
-                        name={FORM_FIELDS.PASSWORD}
-                        id={FORM_FIELDS.PASSWORD}
-                        type='password'
-                        onChange={handleInputChange}
-                    />
-                </div>
-                {
-                    !response?
-                        <button type='submit' disabled={loading}>
-                            {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
-                        </button>
-                        :
-                        <>
-                            <button type='submit' disabled={true}>Sesión Iniciada</button>
-                            <span style={{ color: 'green' }}>{response.message}</span>
-                        </>
-                }
-                {
-                    error && <span style={{ color: 'red' }}>{error.message}</span>
-                }
-                <p>
-                    ¿No tienes una cuenta?
-                    <button onClick={goToRegister}>Registrate aquí</button>
-                </p>
-                <p>
-                    ¿Olvidaste tu contraseña?
-                    <button type='button' onClick={goToRecovery}>Recupérala aquí</button>
-                </p>
-            </form>
-        </div>
+       <div className="auth-container">
+  <div className="auth-card">
+    <h1>Iniciar Sesión</h1>
+    <form onSubmit={handleSubmit}>
+      <div className="input-group">
+        <label htmlFor={FORM_FIELDS.EMAIL}>Email:</label>
+        <input name={FORM_FIELDS.EMAIL} id={FORM_FIELDS.EMAIL} type="email" onChange={handleInputChange} />
+      </div>
+      <div className="input-group">
+        <label htmlFor={FORM_FIELDS.PASSWORD}>Contraseña:</label>
+        <input name={FORM_FIELDS.PASSWORD} id={FORM_FIELDS.PASSWORD} type="password" onChange={handleInputChange} />
+      </div>
+      {!response ? (
+        <button type="submit" disabled={loading} className="primary-button">
+          {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+        </button>
+      ) : (
+        <>
+          <button type="submit" disabled className="primary-button">Sesión Iniciada</button>
+          <span className="success-message">{response.message}</span>
+        </>
+      )}
+      {error && <span className="error-message">{error.message}</span>}
+
+      <p className="auth-link-container">
+        ¿No tienes una cuenta?
+        <button type="button" onClick={goToRegister} className="auth-link-button">Registrate aquí</button>
+      </p>
+      <p className="auth-link-container">
+        ¿Olvidaste tu contraseña?
+        <button type="button" onClick={goToRecovery} className="auth-link-button">Recupérala aquí</button>
+      </p>
+    </form>
+  </div>
+</div>
     )
 }
 export default LoginScreen

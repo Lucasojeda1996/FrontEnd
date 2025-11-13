@@ -1,9 +1,9 @@
-import React from 'react'
-import useForm from '../../hooks/useForm'
-import { register } from '../../services/authService'
-import useFetch from '../../hooks/useFetch'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import './RegisterScreen.css' // CSS que diseñaremos abajo
+import useForm from '../../hooks/useForm'
+import useFetch from '../../hooks/useFetch'
+import { register } from '../../services/authService'
+import './RegisterScreen.css' // tu archivo CSS
 
 const FORM_FIELDS = {
     NAME: 'name',
@@ -31,25 +31,36 @@ const RegisterScreen = () => {
         )
     }
 
-    const { form_state: register_form_state, handleSubmit, handleInputChange } = useForm({
-        initial_form_state,
-        onSubmit: onRegister
-    })
+    const { form_state: register_form_state, handleSubmit, handleInputChange } =
+        useForm({
+            initial_form_state,
+            onSubmit: onRegister
+        })
+
+    // Redirigir al login cuando el registro sea exitoso
+    useEffect(() => {
+        if (response && response.ok) {
+            const timer = setTimeout(() => {
+                navigate('/login')
+            }, 1500)
+            return () => clearTimeout(timer)
+        }
+    }, [response, navigate])
 
     return (
         <div className="register-container">
             <div className="register-card">
-                <h1 className="register-title">Regístrate</h1>
-                <form onSubmit={handleSubmit} className="register-form">
+                <h1>Registrate</h1>
+                <form onSubmit={handleSubmit}>
                     <div className="input-group">
                         <label htmlFor={FORM_FIELDS.NAME}>Nombre:</label>
                         <input
-                            id={FORM_FIELDS.NAME}
-                            name={FORM_FIELDS.NAME}
                             type="text"
-                            placeholder="Tu nombre completo"
-                            value={register_form_state.name}
+                            name={FORM_FIELDS.NAME}
+                            id={FORM_FIELDS.NAME}
+                            value={register_form_state[FORM_FIELDS.NAME]}
                             onChange={handleInputChange}
+                            placeholder="Tu nombre completo"
                             required
                         />
                     </div>
@@ -57,12 +68,12 @@ const RegisterScreen = () => {
                     <div className="input-group">
                         <label htmlFor={FORM_FIELDS.EMAIL}>Email:</label>
                         <input
-                            id={FORM_FIELDS.EMAIL}
-                            name={FORM_FIELDS.EMAIL}
                             type="email"
-                            placeholder="usuario@gmail.com"
-                            value={register_form_state.email}
+                            name={FORM_FIELDS.EMAIL}
+                            id={FORM_FIELDS.EMAIL}
+                            value={register_form_state[FORM_FIELDS.EMAIL]}
                             onChange={handleInputChange}
+                            placeholder="usuario@gmail.com"
                             required
                         />
                     </div>
@@ -70,35 +81,32 @@ const RegisterScreen = () => {
                     <div className="input-group">
                         <label htmlFor={FORM_FIELDS.PASSWORD}>Contraseña:</label>
                         <input
-                            id={FORM_FIELDS.PASSWORD}
-                            name={FORM_FIELDS.PASSWORD}
                             type="password"
-                            placeholder="********"
-                            value={register_form_state.password}
+                            name={FORM_FIELDS.PASSWORD}
+                            id={FORM_FIELDS.PASSWORD}
+                            value={register_form_state[FORM_FIELDS.PASSWORD]}
                             onChange={handleInputChange}
+                            placeholder="********"
                             required
                         />
                     </div>
 
-                    <button type="submit" className="primary-button" disabled={loading || response}>
-                        {loading ? 'Registrando...' : response ? 'Registrado ✔' : 'Registrarse'}
-                    </button>
-
-                    {response && <p className="success-message">{response.message}</p>}
-                    {error && <p className="error-message">{error.message}</p>}
-
-                    {!response && (
-                        <p className="login-link">
-                            ¿Ya tienes una cuenta?{' '}
-                            <button
-                                type="button"
-                                className="form-link-button"
-                                onClick={() => navigate('/login')}
-                            >
-                                Inicia sesión
+                    {!response ? (
+                        <button type="submit" className="primary-button" disabled={loading}>
+                            {loading ? 'Registrando...' : 'Registrarse'}
+                        </button>
+                    ) : (
+                        <>
+                            <button type="submit" className="primary-button" disabled>
+                                Registrado ✔
                             </button>
-                        </p>
+                            <p className="success-message">
+                                {response.message} Redirigiendo al login...
+                            </p>
+                        </>
                     )}
+
+                    {error && <p className="error-message">{error.message}</p>}
                 </form>
             </div>
         </div>
