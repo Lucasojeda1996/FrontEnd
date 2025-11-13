@@ -6,77 +6,163 @@ import { useNavigate } from 'react-router'
 import LOCALSTORAGE_KEYS from '../../constants/localstorage.js'
 
 const FORM_FIELDS = {
-  EMAIL: 'email',
-  PASSWORD: 'password'
+    EMAIL: 'email',
+    PASSWORD: 'password'
+
 }
 
 const initial_form_state = {
-  [FORM_FIELDS.EMAIL]: '',
-  [FORM_FIELDS.PASSWORD]: ''
+    [FORM_FIELDS.EMAIL]: '',
+    [FORM_FIELDS.PASSWORD]: ''
 }
+
 
  const LoginScreen = () => {
-  const navigate = useNavigate()
-  const { sendRequest, loading, response, error } = useFetch()
+    const navigate = useNavigate()
 
-  const onLogin = (form_state) => {
-    sendRequest(() => login(
-      form_state[FORM_FIELDS.EMAIL],
-      form_state[FORM_FIELDS.PASSWORD]
-    ))
-  }
+    const { sendRequest, loading, response, error } = useFetch()
 
-  useEffect(() => {
-    if (response && response.ok) {
-      localStorage.setItem(
-        LOCALSTORAGE_KEYS.AUTH_TOKEN,
-        response.data.authorization_token
-      )
-      navigate('/home')
+
+
+    const onLogin = (form_state) => {
+
+        sendRequest(() => login(
+
+            form_state[FORM_FIELDS.EMAIL],
+
+            form_state[FORM_FIELDS.PASSWORD]
+
+        ))
+
     }
-  }, [response])
 
-  const { form_state, handleSubmit, handleInputChange } = useForm({
-    initial_form_state,
-    onSubmit: onLogin
-  })
 
-  return (
-    <div>
-      <h1>Iniciar Sesión</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor={FORM_FIELDS.EMAIL}>Email:</label>
-          <input
-            name={FORM_FIELDS.EMAIL}
-            id={FORM_FIELDS.EMAIL}
-            type='email'
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor={FORM_FIELDS.PASSWORD}>Contraseña:</label>
-          <input
-            name={FORM_FIELDS.PASSWORD}
-            id={FORM_FIELDS.PASSWORD}
-            type='password'
-            onChange={handleInputChange}
-          />
-        </div>
-        {
-          !response
-            ? <button type='submit' disabled={loading}>
-                {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
-              </button>
-            : <>
-                <button type='submit' disabled={true}>Sesión Iniciada</button>
-                <span style={{ color: 'green' }}>{response.message}</span>
-              </>
+
+    useEffect(() => {
+
+        console.log(response)
+
+        if (response && response.ok) {
+
+            //Guardamos el token emitido por el backend, para despues usarlo como credencial
+
+            localStorage.setItem(LOCALSTORAGE_KEYS.AUTH_TOKEN, response.data.authorization_token)
+
+            navigate('/home')
+
         }
-        {error && <span style={{ color: 'red' }}>{error.message}</span>}
-      </form>
-    </div>
-  )
-}
 
+    },
+
+        [response]
+
+    )
+
+    const { form_state: login_form_state, handleSubmit, handleInputChange } = useForm({ initial_form_state, onSubmit: onLogin }
+
+    )
+
+    const goToRegister = () => { navigate('/register') }
+
+    const goToRecovery = () => navigate('/recovery')
+
+
+
+    return (
+
+        <div>
+
+            <h1>Iniciar Sesión</h1>
+
+            <form onSubmit={handleSubmit}>
+
+                <div>
+
+                    <label htmlFor={FORM_FIELDS.EMAIL}>Email:</label>
+
+                    <input
+
+                        name={FORM_FIELDS.EMAIL}
+
+                        id={FORM_FIELDS.EMAIL}
+
+                        type='email'
+
+                        onChange={handleInputChange}
+
+                    />
+
+                </div>
+
+                <div>
+
+                    <label htmlFor={FORM_FIELDS.PASSWORD}>Contraseña:</label>
+
+                    <input
+
+                        name={FORM_FIELDS.PASSWORD}
+
+                        id={FORM_FIELDS.PASSWORD}
+
+                        type='password'
+
+                        onChange={handleInputChange}
+
+                    />
+
+                </div>
+
+                {
+
+                    !response
+
+                        ?
+
+                        <button type='submit' disabled={loading}>
+
+                            {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+
+                        </button>
+
+                        :
+
+                        <>
+
+                            <button type='submit' disabled={true}>Sesión Iniciada</button>
+
+                            <span style={{ color: 'green' }}>{response.message}</span>
+
+                        </>
+
+                }
+
+                {
+
+                    error && <span style={{ color: 'red' }}>{error.message}</span>
+
+                }
+
+                <p>
+
+                    ¿No tienes una cuenta?
+
+                    <button onClick={goToRegister}>Registrate aquí</button>
+
+                </p>
+
+                <p>
+
+                    ¿Olvidaste tu contraseña?
+
+                    <button type='button' onClick={goToRecovery}>Recupérala aquí</button>
+
+                </p>
+
+            </form>
+
+        </div>
+
+    )
+
+}
 export default LoginScreen
