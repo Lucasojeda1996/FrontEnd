@@ -1,5 +1,5 @@
-import ENVIRONMENT from "../config/envionment";
-import { getAuthorizationToken } from "../constants/http";
+import ENVIRONMENT from "../config/environment.js";
+import {getAuthorizationToken} from "../constants/http.js"
 
 import LOCALSTORAGE_KEYS from "../constants/localstorage";
 

@@ -5,19 +5,21 @@ import ResetPasswordScreen from './Screens/ResetPasswordScreen/ResetPasswordScre
 import RecoveryScreen from './Screens/RecoveryScreen/RecoveryScreen.jsx'
 import RegisterScreen from './Screens/RegisterScreen/RegisterScreen.jsx'
 import LoginScreen from './Screens/LoginScreen/LoginScreen.jsx'
+import HomeScreen from './Screens/HomeScreen/HomeScreen.jsx'
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/login" replace />} />
+
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/recovery" element={<RecoveryScreen />} />
       <Route path="/reset-password/:recovery_token" element={<ResetPasswordScreen />} />
 
-      {/* 🔒 Rutas protegidas */}
+   
       <Route element={<AuthMiddleware />}>
-        <Route path="/home" element={<h1>home</h1>} />
+        <Route path="/home" element={<HomeScreen/>} />
       </Route>
     </Routes>
   )
