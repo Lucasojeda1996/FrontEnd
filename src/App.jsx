@@ -17,7 +17,7 @@ function App() {
 
       {/* 🔒 Rutas protegidas */}
       <Route element={<AuthMiddleware />}>
-        <Route path="/home" element={<h1>home</h1>} />
+        <Route path="/home" element={<h1><HomeScreen/></h1>} />
       </Route>
     </Routes>
   )
