@@ -6,7 +6,7 @@ import RecoveryScreen from './Screens/RecoveryScreen/RecoveryScreen.jsx'
 import RegisterScreen from './Screens/RegisterScreen/RegisterScreen.jsx'
 import LoginScreen from './Screens/LoginScreen/LoginScreen.jsx'
 import HomeScreen from './Screens/HomeScreen/HomeScreen.jsx'
-import  createWorkspace  from './services/workspaceService.js'
+import  {createWorkspace}  from './services/workspaceService.js'
 
 function App() {
   return (
