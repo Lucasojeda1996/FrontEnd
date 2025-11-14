@@ -78,4 +78,4 @@ async function inviteUser (email, workspace_id){
     return response_data
 }
 
-export default{ getWorkspaceList, createWorkspace, getWorkspaceById, inviteUser}
+export { getWorkspaceList, createWorkspace, getWorkspaceById, inviteUser}
