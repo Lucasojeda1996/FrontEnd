@@ -17,25 +17,18 @@ const HomeScreen = () => {
 
     console.log(response, loading, error)
   return (
-    <div>    
-        
-        <h1>Espacios de trabajo</h1>
-             {
-            !loading && response &&  response.data.workspaces.map(
-                (elemento) => {
-                    return (
-                        <div key={elemento.id}>
-                            <h2>{elemento.name}</h2>
-                            <a href={`/workspace/${elemento.workspace_id}`}>Entrar</a>
-                        </div>
-                    )
-                }
-            )
-        }
-         <Link to={'/workspace/new'}>
-            Crear nuevo espacio de trabajo
-        </Link>
+  <div>
+  <h1>Espacios de trabajo</h1>
+
+  {response?.data?.workspaces?.map((mw) => (
+    <div key={mw._id}>
+      <h2>{mw.workspace?.name}</h2>
+      <a href={`/workspace/${mw.workspace?._id}`}>Entrar</a>
     </div>
+  ))}
+
+  <Link to='/workspace/new'>Crear nuevo espacio de trabajo</Link>
+</div>
   )
 }
 

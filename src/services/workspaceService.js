@@ -22,10 +22,10 @@ async function getWorkspaceList() {
 createWorkspace(name, url_img = '')
 Consumir la api para crear un workspace
 */
-async function createWorkspace(name, url_img = "") {
+async function createWorkspace(name, url_image = "") {
     const body = {
         name: name,
-        url_img: url_img,
+        url_img: url_image,
     };
     const response_http = await fetch(ENVIRONMENT.URL_API + "/api/workspace", {
         method: "POST",
