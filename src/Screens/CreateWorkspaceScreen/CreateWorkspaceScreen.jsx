@@ -7,38 +7,18 @@ import { useNavigate } from 'react-router'
 const CreateWorkspaceScreen = () => {
     const navigation = useNavigate()
     const {response, loading, error, sendRequest} = useFetch()
-
-    const initial_state = {
-        workspace_name: ''
-    }
-
-
-
+    const initial_state = { workspace_name:'' }
     const onSubmit = (form_data) => {
-
         sendRequest(
             async () => {
-                return await createWorkspace(form_data.workspace_name, '')
+                return await createWorkspace(form_data.workspace_name,'')
             }
         )
     }
-    useEffect(
-        () => {
-            if(response && response.ok){
-                /* 
-                Si todo esta bien cargar lista de workspaces en home
-                 */
-                navigation('/home')
-            }
-        },
-        [response]
-    )
-
-    const {
-        form_state,
-        handleInputChange,
-        handleSubmit
-    } = useForm({
+    
+    useEffect(()=> { if(response && response.ok){navigation('/home')} }, [response])
+    console.log(response,loading,error)
+    const {  form_state,  handleInputChange, handleSubmit  } = useForm({
         initial_form_state: initial_state,
         onSubmit: onSubmit
     })
