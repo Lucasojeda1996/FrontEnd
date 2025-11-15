@@ -25,7 +25,7 @@ Consumir la api para crear un workspace
 async function createWorkspace(name, url_image ="") {
     const body = {
         name: name,
-        url_img: url_image,
+        url_image: url_image,
     };
     const response_http = await fetch(ENVIRONMENT.URL_API + "/api/workspaces", {
         method: "POST",
