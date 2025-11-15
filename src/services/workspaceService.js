@@ -23,23 +23,17 @@ createWorkspace(name, url_img = '')
 Consumir la api para crear un workspace
 */
 async function createWorkspace(name, url_image = "") {
-    const body = {
-        name: name,
-        url_img: url_image,
-    };
-    const response_http = await fetch(ENVIRONMENT.URL_API + "/api/workspace", {
+    return fetch(ENVIRONMENT.URL_API + "/api/workspaces", {
         method: "POST",
         headers: {
             "Content-type": "application/json",
-            'Authorization': `Bearer ${getAuthorizationToken()}`
+            "Authorization": `Bearer ${getAuthorizationToken()}`
         },
-        body: JSON.stringify(body),
-    });
-    const response_data = await response_http.json();
-    if (!response_data.ok) {
-        throw new Error(response_data.message)
-    }
-    return response_data;
+        body: JSON.stringify({
+            name,
+            url_img: url_image
+        })
+    })
 }
 
 async function getWorkspaceById(workspace_id) {
