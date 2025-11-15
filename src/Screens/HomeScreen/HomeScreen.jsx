@@ -14,7 +14,7 @@ const HomeScreen = () => {
 
     return (
         <div>
-            <h1>Espacios de trabajo</h1>
+            <h1>Bienvenido, estos son tus espacios de trabajo</h1>
 
             {
                 !loading &&
@@ -26,7 +26,7 @@ const HomeScreen = () => {
                 ))
             }
 
-            <Link to={'/workspaces/new'}>
+            <Link to={'/workspace/new'}>
                 Crear nuevo espacio de trabajo
             </Link>
         </div>
