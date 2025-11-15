@@ -27,7 +27,7 @@ async function createWorkspace(name, url_image ="") {
         name: name,
         url_img: url_image,
     };
-    const response_http = await fetch(ENVIRONMENT.URL_API + "/api/workspace", {
+    const response_http = await fetch(ENVIRONMENT.URL_API + "/api/workspaces", {
         method: "POST",
         headers: {
             "Content-type": "application/json",
@@ -61,7 +61,7 @@ async function getWorkspaceById(workspace_id) {
 
 async function inviteUser (email, workspace_id){
     const response_http = await fetch(
-        ENVIRONMENT.URL_API + "/api/workspace/" + workspace_id + "/invite",
+        ENVIRONMENT.URL_API + "/api/workspaces/" + workspace_id + "/invite",
         {
             method: "POST",
             headers: {
