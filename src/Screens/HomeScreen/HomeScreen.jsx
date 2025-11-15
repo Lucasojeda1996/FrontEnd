@@ -26,7 +26,7 @@ const HomeScreen = () => {
                 ))
             }
 
-            <Link to={'/workspace/new'}>
+            <Link to={'/workspaces/new'}>
                 Crear nuevo espacio de trabajo
             </Link>
         </div>
