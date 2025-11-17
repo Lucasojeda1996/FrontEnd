@@ -9,9 +9,6 @@ const HomeScreen = () => {
     useEffect(() => {
         sendRequest(getWorkspaceList)
     }, [])
-
-    console.log(response, loading, error)
-
     return (
         <div>
             <h1>Bienvenido, estos son tus espacios de trabajo</h1>
