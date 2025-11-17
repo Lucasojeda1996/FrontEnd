@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import useFetch from '../../hooks/useFetch'
 import { getWorkspaceList } from '../../services/workspaceService'
 import { Link } from 'react-router'
+import './HomeScreen.css'
 
 const HomeScreen = () => {
     const { loading, response, error, sendRequest } = useFetch()
@@ -9,21 +10,35 @@ const HomeScreen = () => {
     useEffect(() => {
         sendRequest(getWorkspaceList)
     }, [])
+
+    const workspaces = response?.data?.workspaces || []
+
     return (
-        <div>
-            <h1>Bienvenido, estos son tus espacios de trabajo</h1>
+        <div className="home-container">
+            <h1 className="home-title">
+                Bienvenido, estos son tus espacios de trabajo
+            </h1>
 
-            {
-                !loading &&
-                response?.data?.workspaces?.map((mw) => (
-                    <div key={mw._id}>
-                        <h2>{mw.workspace?.name}</h2>
-                        <a href={`/workspace/${mw.workspace?._id}`}>Entrar</a>
-                    </div>
-                ))
-            }
+            <div className="workspace-list">
+                {!loading &&
+                    workspaces.map((mw) => (
+                        <div className="workspace-card" key={mw._id}>
+                            <h2 className="workspace-name">
+                                {mw.workspace?.name}
+                            </h2>
 
-            <Link to={'/workspace/new'}>
+                            <a
+                                className="workspace-link"
+                                href={`/workspace/${mw.workspace?._id}`}
+                            >
+                                Entrar
+                            </a>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <Link to={'/workspace/new'} className="create-workspace-btn">
                 Crear nuevo espacio de trabajo
             </Link>
         </div>
