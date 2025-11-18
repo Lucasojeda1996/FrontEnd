@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useForm from '../../hooks/useForm.jsx'
 import useFetch from '../../hooks/useFetch.jsx'
 import { sendRecoveryEmail } from '../../services/authService.js'
+import { useNavigate } from 'react-router'
 import './RecoveryScreen.css'
 
 const FORM_FIELDS = {
@@ -13,6 +14,8 @@ const initial_form_state = {
 }
 
 const RecoveryScreen = () => {
+  const navigate = useNavigate()
+
   const { sendRequest, loading, response, error } = useFetch()
 
   const onSubmit = (form_state) => {
@@ -20,6 +23,17 @@ const RecoveryScreen = () => {
   }
 
   const { handleSubmit, handleInputChange } = useForm({ initial_form_state, onSubmit })
+
+  // ⭐ Redirección automática cuando el correo se envió correctamente
+  useEffect(() => {
+    if (response) {
+      const timer = setTimeout(() => {
+        navigate('/login')
+      }, 2000) // 2 segundos para que el usuario vea el mensaje
+
+      return () => clearTimeout(timer)
+    }
+  }, [response, navigate])
 
   return (
     <div className='recovery-page-container'>

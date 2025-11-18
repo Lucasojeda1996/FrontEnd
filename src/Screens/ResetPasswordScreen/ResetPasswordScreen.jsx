@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import useForm from '../../hooks/useForm.jsx'
 import useFetch from '../../hooks/useFetch.jsx'
@@ -35,6 +35,17 @@ const ResetPasswordScreen = () => {
     onSubmit
   })
 
+  // ⭐ Redirección automática al login cuando la contraseña fue cambiada exitosamente
+  useEffect(() => {
+    if (response) {
+      const timer = setTimeout(() => {
+        navigate('/login')
+      }, 2000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [response, navigate])
+
   return (
     <div>
       <h1>Restablecer Contraseña</h1>
@@ -46,6 +57,7 @@ const ResetPasswordScreen = () => {
             name={FORM_FIELDS.PASSWORD}
             type='password'
             onChange={handleInputChange}
+            required
           />
         </div>
 
@@ -56,6 +68,7 @@ const ResetPasswordScreen = () => {
             name={FORM_FIELDS.CONFIRM_PASSWORD}
             type='password'
             onChange={handleInputChange}
+            required
           />
         </div>
 
@@ -64,13 +77,9 @@ const ResetPasswordScreen = () => {
         </button>
 
         {response && (
-          <>
-            <p style={{ color: 'green' }}>{response.message}</p>
-            <button type='button' onClick={() => navigate('/login')}>
-              Volver al login
-            </button>
-          </>
+          <p style={{ color: 'green' }}>{response.message} (redirigiendo...)</p>
         )}
+
         {error && <p style={{ color: 'red' }}>{error.message}</p>}
       </form>
     </div>
