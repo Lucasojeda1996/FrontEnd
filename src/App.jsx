@@ -7,7 +7,7 @@ import RegisterScreen from './Screens/RegisterScreen/RegisterScreen.jsx'
 import LoginScreen from './Screens/LoginScreen/LoginScreen.jsx'
 import HomeScreen from './Screens/HomeScreen/HomeScreen.jsx'
 import CreateWorkspaceScreen from './Screens/CreateWorkspaceScreen/CreateWorkspaceScreen.jsx'
-
+import WorkspaceDetailScreen from './Screens/WorkspaceDetailScreen/WorkspaceDetailScreen.jsx'
 
 function App() {
   return (
