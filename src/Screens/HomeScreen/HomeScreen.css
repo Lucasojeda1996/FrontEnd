@@ -1,62 +1,88 @@
-/* HomeScreen.css */
+/* HomeScreen.css (Versión con Scroll Fijo en la Lista de Workspaces) */
 
-/* Variables de Colores (Inspiradas en Discord/Slack) */
+/* Variables de Colores (Mantenidas) */
 :root {
-    --color-dark-bg: #2f3136; /* Fondo principal oscuro */
-    --color-card-bg: #36393f; /* Fondo de tarjetas/paneles */
-    --color-text-primary: #dcddde; /* Texto principal */
-    --color-text-secondary: #b9bbbe; /* Texto secundario */
-    --color-accent: #5865f2; /* Azul/Púrpura (Discord-like) */
+    --color-dark-bg: #2f3136;
+    --color-card-bg: #36393f;
+    --color-text-primary: #dcddde;
+    --color-text-secondary: #b9bbbe;
+    --color-accent: #5865f2;
     --color-accent-hover: #4752c4;
 }
 
 /* ------------------------------------------- */
-/* 1. Contenedor Principal (Fondo y Centrado) */
+/* 1. Contenedor Principal (Ajuste de Altura) */
 /* ------------------------------------------- */
 .home-container {
-    /* Fondo oscuro y altura completa */
     background-color: var(--color-dark-bg);
     min-height: 100vh;
     padding: 40px;
     font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: var(--color-text-primary);
     
-    /* Centrado del contenido */
+    /* Configuración Flex para ocupar toda la altura visible */
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra horizontalmente */
+    align-items: center;
     text-align: center;
+    /* Usamos height: 100vh para asegurar que solo la lista scrollee */
+    height: 100vh; 
+    box-sizing: border-box; /* Asegura que el padding no cause overflow */
 }
 
-/* Título */
+/* Título (Mantenido) */
 .home-title {
     font-size: 28px;
     font-weight: 700;
     color: #ffffff;
-    margin-bottom: 40px;
-    padding-top: 20px;
+    margin-bottom: 30px; /* Reducido ligeramente */
+    padding-top: 0; /* Quitamos el padding-top extra, el principal lo hace el container */
     max-width: 800px;
 }
 
 /* ------------------------------------------- */
-/* 2. Lista de Workspaces (Estilo de Cubos/Grilla) */
+/* 2. Lista de Workspaces (Sección con Scroll Fijo) */
 /* ------------------------------------------- */
 .workspace-list {
+    /* Hacemos que la lista ocupe el espacio restante (flex-grow) */
+    flex-grow: 1; 
+    
+    /* Propiedades clave para el scroll fijo */
+    overflow-y: auto; /* Habilita el scroll vertical cuando el contenido excede la altura */
+    max-height: calc(100vh - 220px); /* Ajusta la altura máxima. Restamos el espacio ocupado por el título, el padding del contenedor, y el botón de crear. */
+    
+    /* Estilo de la grilla (Mantenido) */
     display: flex;
-    flex-wrap: wrap; /* Permite que las tarjetas fluyan a la siguiente línea */
-    justify-content: center; /* Centra las tarjetas dentro de la lista */
-    gap: 20px; /* Espacio entre las tarjetas */
-    max-width: 1000px; /* Limita el ancho de la lista para centrarla mejor */
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 20px;
+    max-width: 1000px;
     width: 100%;
-    margin-bottom: 40px;
+    padding: 10px 0; /* Padding interno para que los elementos no toquen los bordes al scrollear */
+    margin-bottom: 20px;
 }
 
-/* Tarjeta de Workspace */
+/* Estilo del Scrollbar (Opcional, para un look más moderno/discreto) */
+.workspace-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.workspace-list::-webkit-scrollbar-thumb {
+    background-color: #4f545c; /* Color de la barra de scroll (gris oscuro) */
+    border-radius: 4px;
+}
+
+.workspace-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+/* Tarjeta de Workspace (Mantenida) */
 .workspace-card {
     background-color: var(--color-card-bg);
-    border-radius: 8px; /* Esquinas redondeadas suaves */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
-    width: 250px; /* Ancho fijo para simular un "cubo" o tarjeta */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 250px;
     padding: 25px;
     display: flex;
     flex-direction: column;
@@ -65,25 +91,24 @@
     text-align: center;
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
+    /* Asegura que las tarjetas no sean aplastadas */
+    flex-shrink: 0; 
 }
 
 .workspace-card:hover {
-    /* Efecto hover sutil */
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 
 .workspace-name {
-    /* Nombre del workspace */
     font-size: 18px;
     font-weight: 600;
     color: #ffffff;
     margin-bottom: 15px;
-    word-break: break-word; /* Rompe palabras largas */
+    word-break: break-word;
 }
 
 .workspace-link {
-    /* Botón/Enlace para entrar */
     display: inline-block;
     background-color: var(--color-accent);
     color: #fff;
@@ -100,10 +125,9 @@
 }
 
 /* ------------------------------------------- */
-/* 3. Botón de Creación */
+/* 3. Botón de Creación (Mantenido) */
 /* ------------------------------------------- */
 .create-workspace-btn {
-    /* Botón de acción principal */
     background-color: var(--color-accent);
     color: #fff;
     padding: 12px 25px;
@@ -113,16 +137,12 @@
     text-decoration: none;
     transition: background-color 0.15s ease-in-out;
     margin-top: 20px;
+    margin-bottom: 40px; /* Aseguramos espacio al final */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Aseguramos que el botón no sea aplastado por el flex */
+    flex-shrink: 0; 
 }
 
 .create-workspace-btn:hover {
     background-color: var(--color-accent-hover);
 }
-
-/* ------------------------------------------- */
-/* 4. Manejo de Carga (Loading) y Errores (opcional) */
-/* ------------------------------------------- */
-/* Si deseas añadir estilos para loading o error, puedes usar clases como: */
-/* .loading-message { color: var(--color-text-secondary); } */
-/* .error-message { color: #f04747; } */
