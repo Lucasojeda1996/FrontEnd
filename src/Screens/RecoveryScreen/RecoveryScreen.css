@@ -1,97 +1,136 @@
-.recovery-page-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-  font-family: 'Poppins', sans-serif;
+/* RecoveryScreen.css */
+
+/* Variables de Colores (Consistentes con LoginScreen) */
+:root {
+    --color-dark-bg: #2f3136;      /* Fondo principal de la aplicación */
+    --color-card-bg: #36393f;      /* Fondo de tarjetas/formularios */
+    --color-input-bg: #202225;     /* Fondo del campo de input */
+    --color-text-primary: #dcddde; /* Texto principal */
+    --color-accent: #5865f2;       /* Azul/Púrpura de acento (Botones) */
+    --color-accent-hover: #4752c4;
+    --color-error: #f04747;        /* Rojo para mensajes de error */
+    --color-success: #43b581;      /* Verde para mensajes de éxito */
+    --color-label: #b9bbbe;        /* Gris claro para etiquetas */
 }
 
+/* ------------------------------------------- */
+/* 1. Contenedor Principal (recovery-page-container) */
+/* ------------------------------------------- */
+.recovery-page-container {
+    /* Mismos estilos que el auth-container */
+    background-color: var(--color-dark-bg);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--color-text-primary);
+    text-align: center;
+}
+
+/* ------------------------------------------- */
+/* 2. Tarjeta del Formulario (recovery-card) */
+/* ------------------------------------------- */
 .recovery-card {
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  padding: 40px 50px;
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-  animation: fadeIn 0.6s ease;
+    /* Mismos estilos que el auth-card */
+    background-color: var(--color-card-bg);
+    padding: 30px 40px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px; /* Un poco más estrecho que el Login */
 }
 
 .recovery-card h1 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
-  font-weight: 600;
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-weight: 600;
 }
 
+.recovery-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ------------------------------------------- */
+/* 3. Grupos de Input y Campos de Texto */
+/* ------------------------------------------- */
 .input-group {
-  margin-bottom: 20px;
-  text-align: left;
+    text-align: left;
 }
 
 .input-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: #444;
+    display: block;
+    color: var(--color-label);
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
 }
 
 .input-group input {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 15px;
-  transition: 0.3s;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-input-bg);
+    border-radius: 3px;
+    background-color: var(--color-input-bg);
+    color: var(--color-text-primary);
+    font-size: 16px;
+    transition: border-color 0.2s ease-in-out;
 }
 
 .input-group input:focus {
-  border-color: #2575fc;
-  outline: none;
-  box-shadow: 0 0 5px rgba(37, 117, 252, 0.3);
+    border-color: var(--color-accent);
+    outline: none;
 }
 
-button {
-  width: 100%;
-  padding: 12px;
-  background: #2575fc;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
+/* ------------------------------------------- */
+/* 4. Botón de Envío */
+/* ------------------------------------------- */
+.recovery-card button[type='submit'] {
+    /* Botón principal */
+    background-color: var(--color-accent);
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+    margin-top: 10px;
 }
 
-button:hover {
-  background: #1a5ed9;
+.recovery-card button[type='submit']:hover:not(:disabled) {
+    background-color: var(--color-accent-hover);
 }
 
-button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
+.recovery-card button[type='submit']:disabled {
+    background-color: #5865f270; /* Color de acento transparente */
+    cursor: not-allowed;
+}
+
+/* ------------------------------------------- */
+/* 5. Mensajes de Estado */
+/* ------------------------------------------- */
+.error-message {
+    color: var(--color-error);
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: 500;
 }
 
 .success-message {
-  margin-top: 15px;
-  color: #28a745;
-  font-weight: 500;
-}
-
-.error-message {
-  margin-top: 15px;
-  color: #dc3545;
-  font-weight: 500;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    /* Mensaje de éxito */
+    color: var(--color-success);
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: 500;
+    /* Estilo adicional para el mensaje que desaparece */
+    padding: 8px;
+    background-color: rgba(67, 181, 129, 0.1); /* Fondo muy suave */
+    border-radius: 3px;
 }
