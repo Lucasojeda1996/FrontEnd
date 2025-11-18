@@ -1,151 +1,123 @@
-/* LoginScreen.css */
+/* auth.css: para login y register */
 
-/* ------------------------------------------- */
-/* 1. Contenedor Principal (Discord-like Background) */
-/* ------------------------------------------- */
+/* Contenedor general */
 .auth-container {
-    /* Fondo oscuro principal similar al de Discord */
-    background-color: #2f3136; /* Color de fondo de la aplicación de Discord */
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #dcddde; /* Texto principal gris claro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-/* ------------------------------------------- */
-/* 2. Tarjeta del Formulario (Auth Card) */
-/* ------------------------------------------- */
+/* Tarjeta de autenticación */
 .auth-card {
-    /* Fondo oscuro y elevación de la tarjeta */
-    background-color: #36393f; /* Color de fondo de las tarjetas/modales de Discord */
-    padding: 30px 40px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2); /* Sombra sutil */
-    width: 100%;
-    max-width: 450px; /* Ancho máximo estándar para formularios */
-    text-align: center;
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
 }
 
+/* Título */
 .auth-card h1 {
-    /* Estilo del título */
-    color: #fff; /* Título blanco */
-    font-size: 24px;
-    margin-bottom: 20px;
-    font-weight: 600;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333;
 }
 
-.auth-card form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Espacio entre grupos de input y botones */
-}
-
-/* ------------------------------------------- */
-/* 3. Grupos de Input y Campos de Texto */
-/* ------------------------------------------- */
+/* Grupo de inputs */
 .input-group {
-    text-align: left;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Labels */
 .input-group label {
-    /* Estilo de la etiqueta */
-    display: block;
-    color: #b9bbbe; /* Color gris claro de las etiquetas */
-    font-size: 12px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    text-transform: uppercase; /* Discord usa mayúsculas para las etiquetas de formulario */
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #555;
 }
 
+/* Inputs */
 .input-group input {
-    /* Estilo del campo de texto */
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #202225; /* Borde oscuro */
-    border-radius: 3px;
-    background-color: #202225; /* Fondo más oscuro para el campo de input */
-    color: #dcddde;
-    font-size: 16px;
-    transition: border-color 0.2s ease-in-out;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s ease;
 }
 
 .input-group input:focus {
-    /* Estilo al enfocar el campo */
-    border-color: #7289da; /* Color de acento de Discord (azul/púrpura) */
-    outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 5px rgba(79, 70, 229, 0.3);
+  outline: none;
 }
 
-/* ------------------------------------------- */
-/* 4. Botones */
-/* ------------------------------------------- */
+/* Botón principal */
 .primary-button {
-    /* Botón principal de login */
-    background-color: #7289da; /* Color de acento de Discord */
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.15s ease-in-out;
-    margin-top: 5px; /* Pequeño espacio sobre el botón */
+  width: 100%;
+  padding: 12px;
+  background-color: #4f46e5;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
 }
 
 .primary-button:hover:not(:disabled) {
-    background-color: #677bc4; /* Tono más oscuro al pasar el ratón */
+  background-color: #3730a3;
 }
 
+/* Botón deshabilitado */
 .primary-button:disabled {
-    /* Estado deshabilitado (loading o ya logueado) */
-    background-color: #5865f270; /* Color de acento transparente */
-    cursor: not-allowed;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-/* Botones de enlace (Registrate, Recuperar) */
+/* Mensajes de éxito */
+.success-message {
+  color: #16a34a;
+  margin-top: 10px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Mensajes de error */
+.error-message {
+  color: #dc2626;
+  margin-top: 10px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Enlaces a otras pantallas */
 .auth-link-container {
-    font-size: 14px;
-    color: #b9bbbe;
-    margin-top: 5px;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
 }
 
 .auth-link-button {
-    /* Botones de enlace que parecen texto */
-    background: none;
-    border: none;
-    color: #7289da; /* Mismo color de acento de Discord */
-    font-size: inherit;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    padding: 0 5px;
-    transition: text-decoration 0.15s ease-in-out, color 0.15s ease-in-out;
+  background: none;
+  border: none;
+  color: #4f46e5;
+  cursor: pointer;
+  font-weight: 600;
+  margin-left: 5px;
+  text-decoration: underline;
 }
 
 .auth-link-button:hover {
-    color: #fff; /* Tono blanco al pasar el ratón */
-    text-decoration: underline;
-}
-
-/* ------------------------------------------- */
-/* 5. Mensajes de Estado */
-/* ------------------------------------------- */
-.error-message {
-    /* Mensaje de error */
-    color: #f04747; /* Rojo de error de Discord */
-    font-size: 14px;
-    margin-top: 10px;
-    text-align: center;
-}
-
-.success-message {
-    /* Mensaje de éxito */
-    color: #43b581; /* Verde de éxito de Discord */
-    font-size: 14px;
-    margin-top: 10px;
-    text-align: center;
-    font-weight: 500;
+  color: #3730a3;
 }
