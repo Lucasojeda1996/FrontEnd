@@ -1,78 +1,128 @@
-/* ---------- CONTENEDOR GENERAL ---------- */
+/* HomeScreen.css */
+
+/* Variables de Colores (Inspiradas en Discord/Slack) */
+:root {
+    --color-dark-bg: #2f3136; /* Fondo principal oscuro */
+    --color-card-bg: #36393f; /* Fondo de tarjetas/paneles */
+    --color-text-primary: #dcddde; /* Texto principal */
+    --color-text-secondary: #b9bbbe; /* Texto secundario */
+    --color-accent: #5865f2; /* Azul/Púrpura (Discord-like) */
+    --color-accent-hover: #4752c4;
+}
+
+/* ------------------------------------------- */
+/* 1. Contenedor Principal (Fondo y Centrado) */
+/* ------------------------------------------- */
 .home-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    font-family: 'Inter', sans-serif;
-}
-
-/* ---------- TITULO ---------- */
-.home-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 30px;
-    color: #222;
-}
-
-/* ---------- LISTA DE WORKSPACES ---------- */
-.workspace-list {
+    /* Fondo oscuro y altura completa */
+    background-color: var(--color-dark-bg);
+    min-height: 100vh;
+    padding: 40px;
+    font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--color-text-primary);
+    
+    /* Centrado del contenido */
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center; /* Centra horizontalmente */
+    text-align: center;
 }
 
-/* ---------- CARD DE WORKSPACE ---------- */
-.workspace-card {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 14px;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+/* Título */
+.home-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 40px;
+    padding-top: 20px;
+    max-width: 800px;
+}
+
+/* ------------------------------------------- */
+/* 2. Lista de Workspaces (Estilo de Cubos/Grilla) */
+/* ------------------------------------------- */
+.workspace-list {
     display: flex;
+    flex-wrap: wrap; /* Permite que las tarjetas fluyan a la siguiente línea */
+    justify-content: center; /* Centra las tarjetas dentro de la lista */
+    gap: 20px; /* Espacio entre las tarjetas */
+    max-width: 1000px; /* Limita el ancho de la lista para centrarla mejor */
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+/* Tarjeta de Workspace */
+.workspace-card {
+    background-color: var(--color-card-bg);
+    border-radius: 8px; /* Esquinas redondeadas suaves */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    width: 250px; /* Ancho fijo para simular un "cubo" o tarjeta */
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
 }
 
 .workspace-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0px 6px 16px rgba(0,0,0,0.12);
+    /* Efecto hover sutil */
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 
-/* ---------- NOMBRE DEL WORKSPACE ---------- */
 .workspace-name {
-    font-size: 1.3rem;
+    /* Nombre del workspace */
+    font-size: 18px;
     font-weight: 600;
-    color: #333;
+    color: #ffffff;
+    margin-bottom: 15px;
+    word-break: break-word; /* Rompe palabras largas */
 }
 
-/* ---------- BOTÓN ENTRAR ---------- */
 .workspace-link {
-    padding: 10px 16px;
-    text-decoration: none;
-    background: #4F46E5;
+    /* Botón/Enlace para entrar */
+    display: inline-block;
+    background-color: var(--color-accent);
     color: #fff;
-    font-weight: 600;
-    border-radius: 10px;
-    transition: background 0.2s ease;
+    padding: 8px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.15s ease-in-out;
 }
 
 .workspace-link:hover {
-    background: #4338CA;
+    background-color: var(--color-accent-hover);
 }
 
-/* ---------- BOTÓN CREAR NUEVO ---------- */
+/* ------------------------------------------- */
+/* 3. Botón de Creación */
+/* ------------------------------------------- */
 .create-workspace-btn {
-    display: inline-block;
-    margin-top: 40px;
-    padding: 12px 18px;
-    background: #10B981;
-    color: #ffffff;
-    border-radius: 10px;
+    /* Botón de acción principal */
+    background-color: var(--color-accent);
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 4px;
+    font-size: 16px;
     font-weight: 600;
     text-decoration: none;
-    transition: background 0.2s ease;
+    transition: background-color 0.15s ease-in-out;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .create-workspace-btn:hover {
-    background: #0d9a6c;
+    background-color: var(--color-accent-hover);
 }
+
+/* ------------------------------------------- */
+/* 4. Manejo de Carga (Loading) y Errores (opcional) */
+/* ------------------------------------------- */
+/* Si deseas añadir estilos para loading o error, puedes usar clases como: */
+/* .loading-message { color: var(--color-text-secondary); } */
+/* .error-message { color: #f04747; } */
