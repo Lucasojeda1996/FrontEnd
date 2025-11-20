@@ -1,0 +1,136 @@
+/* ChannelList.css */
+
+/* Variables Semánticas (Asegura consistencia con el tema oscuro) */
+:root {
+    --bg-sidebar: #2f3136; /* Fondo de la barra lateral (de WorkspaceDetailScreen) */
+    --bg-channel-hover: #3a3c41; /* Fondo al pasar el ratón sobre un canal */
+    --bg-channel-active: #40444b; /* Fondo del canal activo */
+    --text-channel: #b9bbbe; /* Color del texto del canal inactivo */
+    --text-channel-active: #fff; /* Color del texto del canal activo */
+    --color-accent: #5865f2; /* Azul para botones y acentos */
+    --color-input-bg: #202225; /* Fondo del input de creación */
+}
+
+/* ------------------------------------------- */
+/* 1. Contenedor Principal (ChannelList) */
+/* ------------------------------------------- */
+.channel-list-container {
+    /* El contenedor principal debe tomar la altura de su padre (channel-sidebar) */
+    flex-grow: 1; 
+    padding: 0 8px; /* Padding lateral, dejando espacio para el scroll */
+    overflow-y: auto; /* Permite scroll si hay muchos canales */
+    
+    /* Nota: Si el scroll no funciona, asegúrate de que el componente padre (.channel-sidebar) 
+       tenga una altura o max-height definida. */
+}
+
+/* Estilo del Scrollbar (Discord-like) */
+.channel-list-container::-webkit-scrollbar {
+    width: 6px;
+}
+.channel-list-container::-webkit-scrollbar-thumb {
+    background-color: #4f545c;
+    border-radius: 3px;
+}
+
+/* ------------------------------------------- */
+/* 2. Lista de Canales (Enlaces) */
+/* ------------------------------------------- */
+
+.channel-list-container a {
+    /* Estilo base de un canal (enlace) */
+    display: block;
+    text-decoration: none;
+    color: var(--text-channel);
+    font-size: 16px;
+    font-weight: 500;
+    padding: 6px 10px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    transition: background-color 0.15s, color 0.15s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Puntos suspensivos para nombres largos */
+}
+
+/* Simulación de ícono de canal de texto (#) */
+.channel-list-container a::before {
+    content: '#';
+    margin-right: 8px;
+    color: var(--text-channel);
+}
+
+/* Estado Hover (Al pasar el ratón) */
+.channel-list-container a:hover {
+    background-color: var(--bg-channel-hover);
+    color: var(--text-channel-active);
+}
+
+/* Estado Activo (Canal Seleccionado - Necesitarías una clase 'active-channel' en React) */
+.channel-list-container a.active-channel {
+    background-color: var(--bg-channel-active);
+    color: var(--text-channel-active);
+}
+
+.channel-list-container a.active-channel::before {
+    color: var(--text-channel-active);
+}
+
+
+/* ------------------------------------------- */
+/* 3. Formulario de Creación de Canal */
+/* ------------------------------------------- */
+
+.new-channel-form {
+    padding: 10px 8px 15px 8px;
+    margin-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Separador sutil */
+}
+
+.new-channel-form div {
+    margin-bottom: 10px;
+}
+
+.new-channel-form label {
+    /* Etiqueta discreta */
+    display: block;
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.new-channel-form input[type='text'] {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 3px;
+    background-color: var(--bg-channel-hover); /* Fondo ligeramente más claro que el sidebar */
+    color: var(--text-channel-active);
+    font-size: 14px;
+    outline: none;
+    transition: box-shadow 0.15s;
+}
+
+.new-channel-form input[type='text']:focus {
+    box-shadow: 0 0 0 1px var(--color-accent); /* Borde de enfoque azul */
+}
+
+.new-channel-form button[type='submit'] {
+    /* Botón de acento */
+    width: 100%;
+    background-color: var(--color-accent);
+    color: #fff;
+    padding: 8px;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.new-channel-form button[type='submit']:hover {
+    background-color: var(--color-accent-hover);
+}

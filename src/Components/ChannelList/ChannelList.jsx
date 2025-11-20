@@ -28,30 +28,39 @@ const ChannelList = () => {
     console.log({form_state})
 
     return (
-        <div style={{display: 'flex', flexDirection:"column"}}>
-            {
-                channels.map((elemento) => {
-                    return (
-                        <Link key={elemento.channel_id} to={`/workspace/${workspace_id}/${elemento._id}`}>{elemento.name}</Link>
-                    )
-                })
-            }
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="channel_name">Nombre del canal:</label>
-                    <input 
-                        type="text" 
-                        placeholder='Nuevo canal' 
-                        id='channel_name' 
-                        name='channel_name' 
-                        onChange={handleInputChange}
-                        value={form_state[NEW_CHANNEL_FORM_FIELDS.CHANNEL_NAME]}
-                    />
-                </div>
-                <button type='submit'>Crear</button>
-            </form>
-        </div>
-    )
+    // 1. Contenedor principal para el scroll
+    <div className="channel-list-container"> 
+        {/* Lista de canales */}
+        {
+            channels.map((elemento) => (
+                <Link 
+                    key={elemento.channel_id} 
+                    to={`/workspace/${workspace_id}/${elemento._id}`}
+                    // 2. Necesitarías lógica para agregar 'active-channel' 
+                    //    si el canal actual coincide con la URL
+                >
+                    {elemento.name}
+                </Link>
+            ))
+        }
+        
+        {/* Formulario de creación */}
+        <form onSubmit={handleSubmit} className="new-channel-form"> 
+            <div>
+                <label htmlFor="channel_name">Nombre del canal</label>
+                <input 
+                    type="text" 
+                    placeholder='ej: general' 
+                    id='channel_name' 
+                    name='channel_name' 
+                    onChange={handleInputChange}
+                    value={form_state[NEW_CHANNEL_FORM_FIELDS.CHANNEL_NAME]}
+                />
+            </div>
+            <button type='submit'>Crear Canal</button>
+        </form>
+    </div>
+)
 }
 
 export default ChannelList
