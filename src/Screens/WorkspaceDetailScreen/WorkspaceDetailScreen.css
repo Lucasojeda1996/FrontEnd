@@ -1,0 +1,92 @@
+/* WorkspaceDetailScreen.css */
+
+/* Variables Semánticas (Asegura la compatibilidad con Modo Oscuro/Claro futuro) */
+:root {
+    /* Modo Oscuro Base (Discord Colores) */
+    --bg-app: #36393f;        /* Fondo principal de la aplicación */
+    --bg-sidebar-dark: #2f3136; /* Fondo de la barra de canales/servidores */
+    --bg-content: #36393f;      /* Fondo principal del chat */
+    --text-primary: #dcddde;
+    --text-secondary: #b9bbbe;
+    --color-accent: #5865f2;
+    --color-accent-hover: #4752c4;
+}
+
+/* ------------------------------------------- */
+/* 1. Estructura Principal (Discord Layout) */
+/* ------------------------------------------- */
+
+.workspace-detail-container {
+    /* Contenedor que ocupa toda la ventana */
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-app);
+    font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--text-primary);
+    overflow: hidden; /* Evita barras de scroll innecesarias */
+}
+
+/* ------------------------------------------- */
+/* 2. Barra Lateral de Canales (ChannelList) */
+/* ------------------------------------------- */
+
+/* Este estilo aplica al contenedor de la lista de canales (si ChannelList es el componente completo) */
+.channel-sidebar {
+    width: 240px; /* Ancho estándar de barra lateral de canales */
+    background-color: var(--bg-sidebar-dark);
+    padding: 10px 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Permite scroll solo en la lista de canales */
+    flex-shrink: 0;
+    border-right: 1px solid #202225; /* Separador sutil */
+}
+
+/* Título del Workspace (Encabezado de la barra lateral) */
+.workspace-header {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Línea divisoria */
+}
+
+/* ------------------------------------------- */
+/* 3. Área de Contenido Principal */
+/* ------------------------------------------- */
+
+.main-content-area {
+    flex-grow: 1; /* Ocupa el espacio restante */
+    background-color: var(--bg-content);
+    display: flex;
+    flex-direction: column;
+    padding: 20px; /* Padding para el contenido que no es chat */
+    overflow-y: auto; /* Permite scroll en el contenido principal */
+}
+
+/* Estilo para el título dentro del contenido principal */
+.main-content-area h1 {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--text-secondary);
+    padding-bottom: 10px;
+}
+
+/* ------------------------------------------- */
+/* 4. Estilos para el InviteUserForm (Mantenemos la coherencia) */
+/* ------------------------------------------- */
+
+.invite-form-container {
+    /* Damos estilo al contenedor si el formulario está en el main-content */
+    background-color: #2f3136; /* Fondo ligeramente diferente para destacar */
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 25px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Aquí irían los estilos específicos de inputs y botones si están en el formulario */
