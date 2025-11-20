@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useParams, Routes, Route } from 'react-router'
+import { useParams } from 'react-router'
 import useFetch from '../../hooks/useFetch'
 import { getWorkspaceById } from '../../services/workspaceService'
 import InviteUserForm from '../../Components/InviteUserForm/InviteUserForm'
@@ -8,7 +8,7 @@ import ChannelMessages from '../../Components/ChannelMessages/ChannelMessages'
 import './WorkspaceDetailScreen.css'
 
 const WorkspaceDetailScreen = () => {
-    const { workspace_id } = useParams()
+    const { workspace_id, channel_id } = useParams()
 
     const { sendRequest, response, error, loading } = useFetch()
 
@@ -19,7 +19,7 @@ const WorkspaceDetailScreen = () => {
     return (
         <div className="workspace-detail-container">
 
-            {/* SIDEBAR */}
+            {/* Sidebar izquierda */}
             <div className="channel-sidebar">
                 {response && (
                     <h1 className="workspace-header">
@@ -30,34 +30,19 @@ const WorkspaceDetailScreen = () => {
                 <ChannelList />
             </div>
 
-            {/* ÁREA PRINCIPAL */}
+            {/* Contenido principal */}
             <div className="main-content-area">
 
-                {/* FORMULARIO DE INVITACIÓN */}
+                {channel_id ? (
+                    <ChannelMessages />
+                ) : (
+                    <p>👉 Selecciona un canal para ver los mensajes</p>
+                )}
+
                 <div className="invite-form-container">
                     <InviteUserForm workspace_id={workspace_id} />
                 </div>
 
-                {/* 📌 RUTAS INTERNAS PARA CARGAR MENSAJES */}
-                <Routes>
-
-                    {/* Cuando NO hay canal seleccionado */}
-                    <Route
-                        index
-                        element={<p className="select-channel-hint">
-                            Selecciona un canal para ver los mensajes.
-                        </p>}
-                    />
-
-                    {/* Cuando hay un canal seleccionado */}
-                    <Route
-                        path=":channel_id"
-                        element={<ChannelMessages />}
-                    />
-                </Routes>
-
-                {loading && <p>Cargando workspace...</p>}
-                {error && <p className="error-message">Error: {error.message}</p>}
             </div>
         </div>
     )
