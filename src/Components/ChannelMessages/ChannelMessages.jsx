@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react"
 import { useParams } from "react-router"
 import useFetch from "../../hooks/useFetch"
 import { getChannelMessages, sendMessage } from "../../services/messageService"
+import './ChannelMessages.css'
 
 const ChannelMessages = () => {
     const { workspace_id, channel_id } = useParams()
