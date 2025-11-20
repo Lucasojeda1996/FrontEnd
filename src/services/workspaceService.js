@@ -44,7 +44,7 @@ async function createWorkspace(name, url_image ="") {
 
 async function getWorkspaceById(workspace_id) {
     const response_http = await fetch(
-        ENVIRONMENT.URL_API + "/api/workspace/" + workspace_id,
+        ENVIRONMENT.URL_API + "/api/workspaces/" + workspace_id,
         {
             method: "GET",
             headers: {
