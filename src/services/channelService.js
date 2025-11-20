@@ -6,7 +6,7 @@ GET /api/workspace/:workspace_id/channels
 */
 async function getChannelListByWorkspaceId(workspace_id) {
     const response_http = await fetch(
-        ENVIRONMENT.URL_API + "/api/workspace/" + workspace_id + "/channels",
+        ENVIRONMENT.URL_API + "/api/workspaces/" + workspace_id + "/channels",
         {
             method: "GET",
             headers: {
@@ -29,7 +29,7 @@ async function createNewChannel(workspace_id, name) {
     name: name,
   };
   const response_http = await fetch(
-    ENVIRONMENT.URL_API + "/api/workspace/" + workspace_id + "/channels",
+    ENVIRONMENT.URL_API + "/api/workspaces/" + workspace_id + "/channels",
     {
       method: "POST",
       headers: {
