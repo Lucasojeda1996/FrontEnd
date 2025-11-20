@@ -4,6 +4,7 @@ import { createNewChannel, getChannelListByWorkspaceId } from '../../services/ch
 import { Link, useParams } from 'react-router'
 import useChannels from '../../hooks/useChannels'
 import useForm from '../../hooks/useForm'
+import './ChannelList.css'
 
 const NEW_CHANNEL_FORM_FIELDS = {
     CHANNEL_NAME: 'channel_name'
