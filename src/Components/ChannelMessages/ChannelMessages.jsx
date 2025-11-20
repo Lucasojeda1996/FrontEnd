@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react"
 import { useParams } from "react-router"
 import useFetch from "../../hooks/useFetch"
-import { getMessagesByChannel, sendMessage } from "../../services/messageService"
+import { getChannelMessages, sendMessage } from "../../services/messageService"
 
 
 const ChannelMessages = () => {
