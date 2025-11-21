@@ -10,7 +10,7 @@ import './WorkspaceDetailScreen.css'
 
 const WorkspaceDetailScreen = () => {
     const { workspace_id, channel_id } = useParams()
-
+    const { channels } = useChannels()
     const { sendRequest, response, error, loading } = useFetch()
 
     useEffect(() => {
@@ -28,7 +28,7 @@ const WorkspaceDetailScreen = () => {
                     </h1>
                 )}
 
-                <ChannelList />
+                <ChannelList channels={channels}/>
                 <div className="invite-form-container">
                     <InviteUserForm workspace_id={workspace_id} />
                 </div>
