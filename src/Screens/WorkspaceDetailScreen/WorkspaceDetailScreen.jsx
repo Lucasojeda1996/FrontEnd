@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router'
 import useFetch from '../../hooks/useFetch'
+import useChannels from "../../hooks/useChannels"
 import { getWorkspaceById } from '../../services/workspaceService'
 import InviteUserForm from '../../Components/InviteUserForm/InviteUserForm'
 import ChannelList from '../../Components/ChannelList/ChannelList'
