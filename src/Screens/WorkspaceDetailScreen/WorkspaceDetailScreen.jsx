@@ -37,7 +37,7 @@ const WorkspaceDetailScreen = () => {
             <div className="main-content-area">
 
                 {channel_id ? (
-                    <ChannelMessages />
+                    <ChannelMessages channels={channels}/>
                 ) : (
                     <p>👉 Selecciona un canal para ver los mensajes</p>
                 )}
