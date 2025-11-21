@@ -28,6 +28,9 @@ const WorkspaceDetailScreen = () => {
                 )}
 
                 <ChannelList />
+                <div className="invite-form-container">
+                    <InviteUserForm workspace_id={workspace_id} />
+                </div>
             </div>
 
             {/* Contenido principal */}

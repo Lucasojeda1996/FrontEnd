@@ -77,22 +77,6 @@ const ChannelList = () => {
         </button>
 
 
-        {/* 🔹 Modal de invitación */}
-        {openInvite && (
-            <div className="invite-modal">
-                <div className="invite-modal-content">
-                    <h3>Invitar miembro</h3>
-
-                    <input 
-                        type="email" 
-                        placeholder="Email del usuario"
-                    />
-                    
-                    <button>Enviar Invitación</button>
-                    <button onClick={() => setOpenInvite(false)}>Cerrar</button>
-                </div>
-            </div>
-        )}
 
     </div>
     )
