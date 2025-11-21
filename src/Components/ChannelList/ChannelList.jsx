@@ -15,9 +15,6 @@ const ChannelList = () => {
     const {channels, createChannel} = useChannels()
     const navigate = useNavigate()
 
-    // 🔹 Estado para abrir/cerrar modal Invitar Miembro
-    const [openInvite, setOpenInvite] = useState(false)
-
     const initial_new_channel_state = {
         [NEW_CHANNEL_FORM_FIELDS.CHANNEL_NAME]: ''
     }
@@ -59,24 +56,12 @@ const ChannelList = () => {
             </div>
             <button type='submit'>Crear Canal</button>
         </form>
-
-        {/* 🔹 Botón Invitar Miembro */}
-        <button 
-            className="invite-member-btn"
-            onClick={() => setOpenInvite(true)}
-        >
-            Invitar Miembro
-        </button>
-
-        {/* 🔹 Botón Volver al Home */}
         <button 
             className="home-btn"
             onClick={() => navigate("/home")}
         >
             Volver al Home
         </button>
-
-
 
     </div>
     )

@@ -4,11 +4,16 @@ import useFetch from "../../hooks/useFetch"
 import { getChannelMessages, sendMessage } from "../../services/messageService"
 import './ChannelMessages.css'
 
-const ChannelMessages = () => {
+const ChannelMessages = ({ channels }) => {
     const { workspace_id, channel_id } = useParams()
     const { sendRequest, response, loading } = useFetch()
     const [message, setMessage] = useState("")
     const bottomRef = useRef(null)
+
+    // Buscar el canal actual por ID
+    const currentChannel = channels?.find(
+        (c) => c._id === channel_id || c.channel_id === channel_id
+    )
 
     // Cargar mensajes del canal
     useEffect(() => {
@@ -37,7 +42,11 @@ const ChannelMessages = () => {
 
     return (
         <div className="channel-messages-container">
-            <h2>Mensajes del canal</h2>
+
+            {/* ⭐ NOMBRE DEL CANAL AQUÍ */}
+            <h2>
+                {currentChannel ? `# ${currentChannel.name}` : "Cargando canal..."}
+            </h2>
 
             <div className="messages-list">
                 {loading && <p>Cargando mensajes...</p>}

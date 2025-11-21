@@ -42,10 +42,6 @@ const WorkspaceDetailScreen = () => {
                     <p>👉 Selecciona un canal para ver los mensajes</p>
                 )}
 
-                <div className="invite-form-container">
-                    <InviteUserForm workspace_id={workspace_id} />
-                </div>
-
             </div>
         </div>
     )
