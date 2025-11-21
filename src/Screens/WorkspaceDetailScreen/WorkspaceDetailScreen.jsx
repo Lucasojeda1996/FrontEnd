@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router'
 import useFetch from '../../hooks/useFetch'
-import useChannels from "../../hooks/useChannels"
 import { getWorkspaceById } from '../../services/workspaceService'
 import InviteUserForm from '../../Components/InviteUserForm/InviteUserForm'
 import ChannelList from '../../Components/ChannelList/ChannelList'
@@ -10,7 +9,7 @@ import './WorkspaceDetailScreen.css'
 
 const WorkspaceDetailScreen = () => {
     const { workspace_id, channel_id } = useParams()
-    const { channels } = useChannels()
+
     const { sendRequest, response, error, loading } = useFetch()
 
     useEffect(() => {
@@ -28,20 +27,21 @@ const WorkspaceDetailScreen = () => {
                     </h1>
                 )}
 
-                <ChannelList channels={channels}/>
-                <div className="invite-form-container">
-                    <InviteUserForm workspace_id={workspace_id} />
-                </div>
+                <ChannelList />
             </div>
 
             {/* Contenido principal */}
             <div className="main-content-area">
 
                 {channel_id ? (
-                    <ChannelMessages channels={channels}/>
+                    <ChannelMessages />
                 ) : (
                     <p>👉 Selecciona un canal para ver los mensajes</p>
                 )}
+
+                <div className="invite-form-container">
+                    <InviteUserForm workspace_id={workspace_id} />
+                </div>
 
             </div>
         </div>
