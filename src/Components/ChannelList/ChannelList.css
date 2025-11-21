@@ -134,3 +134,40 @@
 .new-channel-form button[type='submit']:hover {
     background-color: var(--color-accent-hover);
 }
+
+.invite-member-btn,
+.home-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background: #5b6def;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.invite-member-btn:hover,
+.home-btn:hover {
+    background: #4a59d1;
+}
+
+.invite-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invite-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

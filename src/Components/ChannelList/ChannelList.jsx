@@ -1,7 +1,7 @@
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useFetch from '../../hooks/useFetch'
 import { createNewChannel, getChannelListByWorkspaceId } from '../../services/channelService'
-import { Link, useParams } from 'react-router'
+import { Link, useParams, useNavigate } from 'react-router'
 import useChannels from '../../hooks/useChannels'
 import useForm from '../../hooks/useForm'
 import './ChannelList.css'
@@ -13,32 +13,31 @@ const NEW_CHANNEL_FORM_FIELDS = {
 const ChannelList = () => {
     const {workspace_id} = useParams()
     const {channels, createChannel} = useChannels()
+    const navigate = useNavigate()
 
-  
-
+    // 🔹 Estado para abrir/cerrar modal Invitar Miembro
+    const [openInvite, setOpenInvite] = useState(false)
 
     const initial_new_channel_state = {
         [NEW_CHANNEL_FORM_FIELDS.CHANNEL_NAME]: ''
     }
+
     const  {form_state, handleInputChange, handleSubmit} = useForm(
         {
             initial_form_state: initial_new_channel_state, 
             onSubmit: createChannel
         }
     )
-    console.log({form_state})
 
     return (
-    // 1. Contenedor principal para el scroll
     <div className="channel-list-container"> 
+        
         {/* Lista de canales */}
         {
             channels.map((elemento) => (
                 <Link 
-                    key={elemento.channel_id} 
+                    key={elemento._id} 
                     to={`/workspace/${workspace_id}/${elemento._id}`}
-                    // 2. Necesitarías lógica para agregar 'active-channel' 
-                    //    si el canal actual coincide con la URL
                 >
                     {elemento.name}
                 </Link>
@@ -60,8 +59,43 @@ const ChannelList = () => {
             </div>
             <button type='submit'>Crear Canal</button>
         </form>
+
+        {/* 🔹 Botón Invitar Miembro */}
+        <button 
+            className="invite-member-btn"
+            onClick={() => setOpenInvite(true)}
+        >
+            Invitar Miembro
+        </button>
+
+        {/* 🔹 Botón Volver al Home */}
+        <button 
+            className="home-btn"
+            onClick={() => navigate("/home")}
+        >
+            Volver al Home
+        </button>
+
+
+        {/* 🔹 Modal de invitación */}
+        {openInvite && (
+            <div className="invite-modal">
+                <div className="invite-modal-content">
+                    <h3>Invitar miembro</h3>
+
+                    <input 
+                        type="email" 
+                        placeholder="Email del usuario"
+                    />
+                    
+                    <button>Enviar Invitación</button>
+                    <button onClick={() => setOpenInvite(false)}>Cerrar</button>
+                </div>
+            </div>
+        )}
+
     </div>
-)
+    )
 }
 
 export default ChannelList
