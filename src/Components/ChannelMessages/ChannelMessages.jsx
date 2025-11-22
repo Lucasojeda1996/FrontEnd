@@ -2,13 +2,19 @@ import React, { useEffect, useState, useRef } from "react"
 import { useParams } from "react-router"
 import useFetch from "../../hooks/useFetch"
 import { getChannelMessages, sendMessage } from "../../services/messageService"
+import useChannels from "../../hooks/useChannels"
 import './ChannelMessages.css'
 
 const ChannelMessages = () => {
     const { workspace_id, channel_id } = useParams()
     const { sendRequest, response, loading } = useFetch()
+    const { channels } = useChannels()
+
     const [message, setMessage] = useState("")
     const bottomRef = useRef(null)
+
+    // Encontrar canal actual
+    const currentChannel = channels.find(ch => ch._id === channel_id)
 
     // Cargar mensajes del canal
     useEffect(() => {
@@ -30,14 +36,14 @@ const ChannelMessages = () => {
         await sendRequest(() => sendMessage(workspace_id, channel_id, message))
         
         setMessage("")
-        
-        // Recargar mensajes después de enviar
         sendRequest(() => getChannelMessages(workspace_id, channel_id))
     }
 
     return (
         <div className="channel-messages-container">
-            <h2>Mensajes del canal</h2>
+            
+            {/* 🔥 Aquí mostramos el nombre real del canal */}
+            <h2>{currentChannel ? currentChannel.name : "Cargando canal..."}</h2>
 
             <div className="messages-list">
                 {loading && <p>Cargando mensajes...</p>}
