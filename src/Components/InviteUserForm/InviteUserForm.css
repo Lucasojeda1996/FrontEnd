@@ -26,7 +26,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.15s;
-    margin-bottom: 20px; /* Para separarlo del contenido si está en el main area */
+  * Para separarlo del contenido si está en el main area */
 }
 
 .invite-button:hover {
