@@ -18,7 +18,6 @@ const WorkspaceDetailScreen = () => {
 
     return (
         <div className="workspace-detail-container">
-
             {/* Sidebar izquierda */}
             <div className="channel-sidebar">
                 {response && (
@@ -26,17 +25,10 @@ const WorkspaceDetailScreen = () => {
                         {response.data.workspace.name}
                     </h1>
                 )}
-            
                 <ChannelList />
-                
                 <InviteUserForm workspace_id={workspace_id} />
-                
-
             </div>
-
-            {/* Contenido principal */}
             <div className="main-content-area">
-
                 {channel_id ? (
                     <ChannelMessages />
                 ) : (
